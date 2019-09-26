@@ -40,6 +40,10 @@ Route::get('billets/read', 'BilletsController@read_all_articles')->name('billets
 
 Route::get('billets/{id}/edit', 'BilletsController@display_edit')->name('edit_display');
 
+Route::get('billet/{id}', 'BilletsController@display_comments_page')->name('display_comments');
+
+Route::post('billet/{id}', 'CommentsController@send_comment')->name('create_comment');
+
 Route::post('billets/{id}/editBillet', 'BilletsController@billet_edit')->name('edit');
 
 Route::post('billets/{id}/delete', 'BilletsController@destroy')->name('billets_delete');

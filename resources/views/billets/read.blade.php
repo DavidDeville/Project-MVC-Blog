@@ -8,9 +8,7 @@
         @if(isset($posts))
             @foreach($posts as $post)
             <div class="card">
-                <div class="card-header">
-                    {{ $post->title }}
-                </div>
+                <div class="card-header"><a href="{{ route('display_comments', ['id' => $post->id])}}">{{ $post->title }}</a></div>
                 <div class="card-body">
                     <p class="card-text">{{ $post->content }}</p>
                     <footer class="blockquote-footer">Tags : {{ $post->tags }}</footer><br>
@@ -20,10 +18,7 @@
                         <button class="btn btn-outline-danger">{{ __('Effacer article') }}</button>
                     </form>
                     <br>
-                    {{-- <form method="post" action="{{ route('edit_display', ['id' => $post->id])}}">  
-                    @csrf --}}
-                        <button class="btn btn-outline-danger"><a href="{{ route('edit_display', ['id' => $post->id])}}">{{ __('Editer article') }}</a></button>
-                    {{-- </form> --}}
+                    <button class="btn btn-outline-danger"><a href="{{ route('edit_display', ['id' => $post->id])}}">{{ __('Editer article') }}</a></button>
                     @endif
                     <br>
                     <div class="blockquote-footer">{{ $post->created_at->format('d M Y') }}</div>

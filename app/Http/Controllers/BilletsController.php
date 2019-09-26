@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Request as req;
 use Illuminate\Support\Facades\Redirect;
 use App\Billets;
 use App\User;
+use App\Comments;
 
 class BilletsController extends Controller
 {
@@ -20,6 +21,22 @@ class BilletsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'title' => ['required', 'string', 'max:255'],
+            'tags' => ['required', 'string', 'min:255'],
+            'content' => ['required', 'string', 'max:255'],
+        ]);
     }
 
     /**
@@ -64,7 +81,13 @@ class BilletsController extends Controller
 
     public function display_edit($id)
     {
-        return view('billets/update', ['posts' => Billets::findOrFail($id)]);
+        return view('billets/update', ['posts' => Billets::findOrFail($id), 'currentuser' => Auth::user()->id]);
+    }
+
+    public function display_comments_page($id)
+    {
+        $comments = Billets::find($id)->comments;
+        return view('billets/billet_comment', ['posts' => Billets::findOrFail($id), 'currentuser' => Auth::user()->id, 'comments' => $comments]);
     }
 
     public function billet_edit(Request $request, $id)
@@ -80,7 +103,6 @@ class BilletsController extends Controller
         }
         else {
             return Redirect::to('billets/read');
-        }
-        //return view('billets/read', ['posts' => Billets::all(), 'current_user' => Auth::user()->id]);
+        }   
     }
 }

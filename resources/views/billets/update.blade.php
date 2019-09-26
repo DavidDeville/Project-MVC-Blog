@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @if($currentuser == $posts->user_id)
                 <div class="card-header">{{ __('Editer un article') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('edit', ['id' => $posts->id]) }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Titre') }}</label>
                             
@@ -60,6 +60,9 @@
                                 </button>
                         </div>
                     </form>
+                    @else
+                    <div class="card-header">{{ __('Vue interdite') }}</div>
+                    @endif
                 </div>
             </div>
         </div>
