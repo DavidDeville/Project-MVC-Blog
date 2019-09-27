@@ -86,8 +86,13 @@ class BilletsController extends Controller
 
     public function display_comments_page($id)
     {
-        $comments = Billets::find($id)->comments;
-        return view('billets/billet_comment', ['posts' => Billets::findOrFail($id), 'currentuser' => Auth::user()->id, 'comments' => $comments]);
+        if(Billets::find($id) == false) {
+            abort(404);
+        }
+        else {
+            $comments = Billets::find($id)->comments;
+            return view('billets/billet_comment', ['posts' => Billets::findOrFail($id), 'currentuser' => Auth::user()->id, 'comments' => $comments]);
+        }
     }
 
     public function billet_edit(Request $request, $id)
