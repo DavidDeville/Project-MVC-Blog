@@ -10,6 +10,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default'; 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -47,7 +50,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Comments');
     }
 
-    // public function isAdmin()    {        
-    //     return $this->type === self::ADMIN_TYPE;    
-    // }
+    public function isAdmin()    {        
+        return $this->type === self::ADMIN_TYPE;    
+    }
 }

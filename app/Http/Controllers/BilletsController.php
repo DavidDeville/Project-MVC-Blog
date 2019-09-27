@@ -68,7 +68,7 @@ class BilletsController extends Controller
      */
     protected function read_all_articles()
     {
-        $billets = Billets::paginate(1);
+        $billets = Billets::paginate(5);
         return view('billets/read', ['posts' => $billets, 
         'current_user' => Auth::user()->id]);
     }
@@ -104,7 +104,8 @@ class BilletsController extends Controller
         if(isset($current_url)) {
             return view('billets/update', 
             ['posts' => Billets::findOrFail($id), 
-            'success' => 'Le billet a bien été modifié']);
+            'success' => 'Le billet a bien été modifié',
+            'currentuser' => Auth::user()->id]);
         }
         else {
             return Redirect::to('billets/read');

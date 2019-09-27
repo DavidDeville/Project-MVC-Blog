@@ -47,3 +47,14 @@ Route::post('billet/{id}', 'CommentsController@send_comment')->name('create_comm
 Route::post('billets/{id}/editBillet', 'BilletsController@billet_edit')->name('edit');
 
 Route::post('billets/{id}/delete', 'BilletsController@destroy')->name('billets_delete');
+
+/**
+ * Admin routes
+ */
+
+Route::get('/home', 'HomeController@index')    
+->name('home');
+
+Route::get('/admin', 'AdminController@display_user_infos')->middleware('is_admin')->name('admin');
+
+

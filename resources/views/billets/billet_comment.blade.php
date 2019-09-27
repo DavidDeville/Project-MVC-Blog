@@ -10,8 +10,10 @@
                     <p class="card-text">{{ $posts->content }}</p>
                     <footer class="blockquote-footer">Tags : {{ $posts->tags }}</footer><br>
                     <br>
-                    <div class="blockquote-footer">{{ $posts->created_at->format('d M Y') }}</div>
-                    <div class="blockquote-footer">{{ $posts->updated_at->format('d M Y') }}</div>
+                    <div class="blockquote-footer">{{ date('Y-m-d', strtotime($posts->created_at)) }}</div>
+                    @if(isset($posts->updated_at))
+                    <div class="blockquote-footer">{{ date('Y-m-d', strtotime($posts->updated_at)) }}</div>
+                    @endif
                 </div>
                 </div>
             <br>

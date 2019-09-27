@@ -73,6 +73,7 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'birthdate' => $data['birthdate'],
             'email' => $data['email'],
+            'type' => User::DEFAULT_TYPE,
         ]);
     }
 }

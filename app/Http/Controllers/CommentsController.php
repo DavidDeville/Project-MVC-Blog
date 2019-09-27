@@ -31,8 +31,6 @@ class CommentsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => ['required', 'string', 'max:255'],
-            'tags' => ['required', 'string', 'min:255'],
             'content' => ['required', 'string', 'max:255'],
         ]);
     }

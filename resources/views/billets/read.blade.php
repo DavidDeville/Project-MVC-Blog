@@ -21,8 +21,11 @@
                     <button class="btn btn-outline-danger"><a href="{{ route('edit_display', ['id' => $post->id])}}">{{ __('Editer article') }}</a></button>
                     @endif
                     <br>
-                    <div class="blockquote-footer">{{ $post->created_at->format('d M Y') }}</div>
-                    <div class="blockquote-footer">{{ $post->updated_at->format('d M Y') }}</div>
+                    <div class="blockquote-footer">{{ $post->created_at}}</div>
+                    @if(isset($post->updated_at))
+                    <div class="blockquote-footer">{{ $post->updated_at}}</div><br>
+                    @endif
+                <div class="text-truncate">Nombre de commentaires : {{ $post->comments->count() }}</div>
                 </div>
             </div>
             <br>
