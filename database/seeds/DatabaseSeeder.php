@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // php artisan migrate:fresh && php artisan db:seed 
-        //(new UsersTableSeeder())->run();
-        (new BilletsTableSeeder())->run();
-        //(new CommentsTableSeeder())->run();
+        // (new UsersTableSeeder())->run();
+        // (new BilletsTableSeeder())->run();
+        // (new CommentsTableSeeder())->run();
     }
 }

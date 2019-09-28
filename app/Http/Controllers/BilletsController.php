@@ -69,8 +69,9 @@ class BilletsController extends Controller
     protected function read_all_articles()
     {
         $billets = Billets::paginate(5);
+        $user_type = User::all();
         return view('billets/read', ['posts' => $billets, 
-        'current_user' => Auth::user()->id]);
+        'current_user' => Auth::user()->id, 'user_type' => Auth::user()->type]);
     }
 
     public function destroy($id)

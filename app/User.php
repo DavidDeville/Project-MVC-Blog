@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     const ADMIN_TYPE = 'admin';
-    const DEFAULT_TYPE = 'default'; 
+    const DEFAULT_TYPE = 'commentateur'; 
 
     /**
      * The attributes that are mass assignable.

@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('billets/new', function () {
-    return view('billets/new');
+    return view('billets/new', ['user_type' => Auth::user()->type]);
 })->name('billets');
 
 // Route::get('billets/{id}/editBillet', array('as' => 'edit', function($id = null) {
@@ -57,4 +57,10 @@ Route::get('/home', 'HomeController@index')
 
 Route::get('/admin', 'AdminController@display_user_infos')->middleware('is_admin')->name('admin');
 
+Route::get('/admin/users', 'AdminController@display_users')->middleware('is_admin')->name('admin_users');
 
+Route::get('/admin/billets', 'AdminController@display_users_billets')->middleware('is_admin')->name('admin_billets');
+
+Route::get('/admin/comments', 'AdminController@display_users_comments')->middleware('is_admin')->name('admin_comments');
+
+Route::post('/admin/users', 'AdminController@modify_users')->middleware('is_admin')->name('admin_modify');
