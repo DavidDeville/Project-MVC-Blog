@@ -23,7 +23,6 @@ class AdminController extends Controller
     public function display_user_infos()
     {
         $users = User::latest()->take(10)->get();
-        //dd($users->username);
         $comments = Comments::latest()->take(10)->get();
         $billets = Billets::latest()->take(10)->get();
         return view('admin', ['comments' => $comments, 'billets' => $billets, 'users' => $users]);
@@ -53,5 +52,19 @@ class AdminController extends Controller
         $user_id = intval($_POST['user_id']);
         User::where('id', $user_id)->update(['type' => $user_type]);
         return view('admin_users', ['users' => User::paginate(5)]);
+    }
+
+    public function users_management()
+    {
+        $users = User::paginate(5);
+        return view('admin_banhammer', ['users' => $users]);
+    }
+
+    public function users_ban_management()
+    {
+        $user_status = intval($_POST['user_status']);
+        $user_id = intval($_POST['user_id']);
+        User::where('id', $user_id)->update(['status' => $user_status]);
+        return view('admin_banhammer', ['users' => User::paginate(5)]);
     }
 }

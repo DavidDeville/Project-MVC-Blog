@@ -61,7 +61,8 @@
                         </div>
                     </form>
                     @else
-                    <p>Vous n'êtes pas autorisé à visiter cette page</p>
+                    <p>Vous n'êtes pas autorisé à publier de billet.</p> 
+                    <p>Pour changer votre status, veuillez contacter l'admin ici (en précisant votre pseudo) : admin@mvcblog.com</p>
                     @endif
                 </div>
             </div>

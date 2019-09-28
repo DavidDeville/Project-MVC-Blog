@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('banned', function () {
+    return view('banned');
+});
+
 Route::get('billets/new', function () {
     return view('billets/new', ['user_type' => Auth::user()->type]);
 })->name('billets');
@@ -57,10 +61,16 @@ Route::get('/home', 'HomeController@index')
 
 Route::get('/admin', 'AdminController@display_user_infos')->middleware('is_admin')->name('admin');
 
+Route::get('banned', 'AdminController@ban_redirection')->name('banned');
+
 Route::get('/admin/users', 'AdminController@display_users')->middleware('is_admin')->name('admin_users');
+
+Route::post('/admin/users', 'AdminController@modify_users')->middleware('is_admin')->name('admin_modify');
 
 Route::get('/admin/billets', 'AdminController@display_users_billets')->middleware('is_admin')->name('admin_billets');
 
 Route::get('/admin/comments', 'AdminController@display_users_comments')->middleware('is_admin')->name('admin_comments');
 
-Route::post('/admin/users', 'AdminController@modify_users')->middleware('is_admin')->name('admin_modify');
+Route::get('/admin/users/manageban', 'AdminController@users_management')->middleware('is_admin')->name('admin_banhammer');
+
+Route::post('/admin/users/manageban', 'AdminController@users_ban_management')->middleware('is_admin')->name('admin_banhammer');

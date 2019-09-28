@@ -9,13 +9,9 @@
                     <div class="card-header"><a href=""></a>Les 10 derniers utilisateurs</div>
                     <div class="card-body">
                         @foreach($users as $user)
-                    <p class="card-text">Nom d'utilisateur : {{ $user->username }} et inscrit le {{ $user->created_at}}</p>    
-                        {{-- <p class="card-text">{{ $comment->content }}</p> --}}
+                    <p class="card-text">Nom d'utilisateur : {{ $user->username }} et inscrit le {{ $user->created_at}}</p>
                         <p>-----------------------------------------</p>
                         @endforeach
-                        <form method="post" action="">  
-                        @csrf
-                        </form>
                         <br>
                         <br>
                     </div>

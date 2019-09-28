@@ -11,6 +11,8 @@ class UserController extends Controller
     //
     public function delete_user()
     {
+        Auth::User()->Comments()->delete();
+        Auth::User()->Billets()->delete();
         Auth::User()->delete();
         return Redirect::to('/register');
     }

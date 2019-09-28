@@ -29,8 +29,12 @@
                 <div class="card-header">Liste des commentaires</div>
                 <div class="card-body">
                     @foreach($comments as $comment)
-                <p class="card-text">{{ $comment->content }} / Commentaire envoyé par : {{ $comment->user->username }}</p>
+                    @if($comment->user->status == 1)
+                        <p class="card-text">{{ $comment->content }} / Commentaire envoyé par : {{ $comment->user->username }} (utilisateur banni)</p>
+                    @else
+                        <p class="card-text">{{ $comment->content }} / Commentaire envoyé par : {{ $comment->user->username }}</p>
                     <br>
+                    @endif
                     @endforeach
                 </div>
                 </div>
