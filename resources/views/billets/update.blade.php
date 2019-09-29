@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.content',
+        width: 330,
+        height: 400
+    });
+</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                @if($currentuser == $posts->user_id)
+                @if($currentuser == $posts->user_id || $user_type == 'admin')
                 <div class="card-header">{{ __('Editer un article') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('edit', ['id' => $posts->id]) }}">
@@ -25,12 +33,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Contenu') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" value="{{ $posts->content }}" required autocomplete="content">
+                                <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Contenu') }}</label>
+    
+                                <div class="col-md-6">
+                                <textarea id="content" type="text" class="form-control @error('content') is-invalid @enderror content" name="content">{!! $posts->content !!}</textarea>
+                                </div>
                             </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="tags" class="col-md-4 col-form-label text-md-right">{{ __('Tags') }}</label>

@@ -10,7 +10,10 @@
                 <div class="card-body">
                     @foreach($users as $user)
                 <p class="card-text">Nom d'utilisateur : {{ $user->username }} inscrit le {{ $user->created_at }}</p>  
-                <p>Le type de l'utilisateur est : {{ $user->type }}
+                <p>Nom : {{ $user->name }}</p>
+                <p>Prénom : {{ $user->lastname }}</p>
+                <p>Mail: {{ $user->email }}</p>
+                <p>Rôle actuel : {{ $user->type }}</p>
                 <p>Modifier le rôle de l'utilisateur : </p>
                 <form method="POST" action="{{ route('admin_modify') }}">
                     @csrf
@@ -19,23 +22,12 @@
                         <option value="">--Please choose an option--</option>
                         <option value="blogueur">Blogueur</option>
                         <option value="commentateur">Commentateur</option>
+                        <option value="admin">Administrateur</option>
                     </select>
                     <button type="submit" class="btn btn-primary">
                         {{ __('Envoyer') }}
                     </button>
                 </form>
-                <p>-----------------------------------------</p>
-                <p>Bloquer ou débloquer l'utilisateur : </p>
-                    <form method="POST" action="{{ route('admin_banhammer') }}">
-                        <select id="block-select">
-                            <option value="">--Please choose an option--</option>
-                            <option value="1">Bloquer</option>
-                            <option value="0">Débloquer</option>
-                        </select>
-                        <button type="submit" class="btn btn-primary">
-                                {{ __('Envoyer') }}
-                        </button>
-                    </form>
                 <p>-----------------------------------------</p>
                 @endforeach
                 {{ $users->links() }}

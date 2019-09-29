@@ -44,7 +44,7 @@
                 <div class="card-body">
                     @foreach($billets as $billet)
                 <p class="card-text">Billet publié par : {{ $billet->user['username'] }} le {{ $billet->user['created_at']}}</p>    
-                    <p class="card-text">{{ $billet->content }}</p>
+                    <p class="card-text">{!! $billet->content !!}</p>
                     <p>-----------------------------------------</p>
                     @endforeach
                     <form method="post" action="">  

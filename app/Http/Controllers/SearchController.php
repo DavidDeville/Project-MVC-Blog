@@ -3,14 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
-use App\Billets;
-use App\User;
-use App\Comments;
 
-class CommentsController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,33 +17,13 @@ class CommentsController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'content' => ['required', 'string', 'max:255'],
-        ]);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function send_comment($id)
+    public function create()
     {
-        $billet = Billets::findOrFail($id);
-        $data = request()->validate([
-            'content' => ['required']
-        ]);
-        $data['billet_id'] = $billet['id'];
-        $data['user_id'] = Auth::user()->id;
-        Comments::create($data);
-        return redirect()->route('display_comments', ['id' => $data['billet_id']]);
+        //
     }
 
     /**
@@ -69,9 +43,9 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search_billets()
     {
-        //
+        
     }
 
     /**

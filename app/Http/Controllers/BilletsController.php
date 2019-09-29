@@ -55,7 +55,6 @@ class BilletsController extends Controller
         ]);
         $data['user_id'] = Auth::user()->id;
         $user = Auth::user();
-        // dd($user->type);
         Billets::create($data);
         return view('billets/new', ['mess' => "le billet a bien été envoyé", 'user_type' => $user->type ]);
     }
@@ -83,7 +82,8 @@ class BilletsController extends Controller
 
     public function display_edit($id)
     {
-        return view('billets/update', ['posts' => Billets::findOrFail($id), 'currentuser' => Auth::user()->id]);
+        $user = Auth::user();
+        return view('billets/update', ['posts' => Billets::findOrFail($id), 'currentuser' => Auth::user()->id, 'user_type' => $user->type]);
     }
 
     public function display_comments_page($id)

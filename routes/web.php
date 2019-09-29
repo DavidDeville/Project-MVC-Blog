@@ -29,16 +29,6 @@ Route::get('billets/new', function () {
         return view('home');
     }
 });
-// )->name('billets');
-
-// Route::get('billets/{id}/editBillet', array('as' => 'edit', function($id = null) {
-//     if($id == null) {
-//         return view('welcome');
-//     }
-//     else {
-//         echo "id non trouvé";
-//     }
-// }));
 
 Auth::routes();
 
@@ -61,9 +51,14 @@ Route::post('billets/{id}/editBillet', 'BilletsController@billet_edit')->name('e
 Route::post('billets/{id}/delete', 'BilletsController@destroy')->name('billets_delete');
 
 /**
+ * Search route
+ */
+Route::get('/search/{keywords}', 'SearchController@search_billets')->name('search');
+
+
+/**
  * Admin routes
  */
-
 Route::get('/home', 'HomeController@index')    
 ->name('home');
 

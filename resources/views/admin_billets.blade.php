@@ -10,7 +10,7 @@
                 <div class="card-body">
                     @foreach($billets as $billet)
                 <p class="card-text">Billet publié par : {{ $billet->user->username }} le {{ $billet->created_at }}</p>    
-                    <p class="card-text">{{ $billet->content }}</p>
+                    <p class="card-text">Titre du billet : <a href="{{ route('display_comments', ['id' => $billet->id])}}">{!!$billet->title !!}</a></p>
                     <p>-----------------------------------------</p>
                     @endforeach
                     {{ $billets->links() }}
