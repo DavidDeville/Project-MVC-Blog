@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ $posts->title }}</div>
                 <div class="card-body">
-                    <p class="card-text">{{ $posts->content }}</p>
+                    <p class="card-text">{!! $posts->content !!}</p>
                     <footer class="blockquote-footer">Tags : {{ $posts->tags }}</footer><br>
                     <br>
                     <div class="blockquote-footer">{{ date('Y-m-d', strtotime($posts->created_at)) }}</div>
@@ -32,7 +32,7 @@
                     @if($comment->user->status == 1)
                         <p class="card-text">{{ $comment->content }} / Commentaire envoyé par : {{ $comment->user->username }} (utilisateur banni)</p>
                     @else
-                        <p class="card-text">{{ $comment->content }} / Commentaire envoyé par : {{ $comment->user->username }}</p>
+                        <p class="card-text">{!! $comment->content !!} / Commentaire envoyé par : {{ $comment->user->username }}</p>
                     <br>
                     @endif
                     @endforeach

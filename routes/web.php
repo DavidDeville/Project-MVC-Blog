@@ -20,8 +20,16 @@ Route::get('banned', function () {
 });
 
 Route::get('billets/new', function () {
-    return view('billets/new', ['user_type' => Auth::user()->type]);
-})->name('billets');
+    // $usertype = Auth::user();
+    // dd($usertype);
+    if(auth()->user()) {
+        return view('billets/new', ['user_type' => Auth::user()->type]);
+    }
+    else {
+        return view('home');
+    }
+});
+// )->name('billets');
 
 // Route::get('billets/{id}/editBillet', array('as' => 'edit', function($id = null) {
 //     if($id == null) {
