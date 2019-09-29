@@ -8,10 +8,10 @@
         @if(isset($posts))
             @foreach($posts as $post)
             <div class="card">
-                <div class="card-header"><a href="{{ route('display_comments', ['id' => $post->id])}}">{{ $post->title }}</a></div>
+                <div class="card-header"><a href="{{ route('display_comments', ['id' => $post->id])}}">{!! $post->title !!}</a></div>
                 <div class="card-body">
-                    <p class="card-text">{{ $post->content }}</p>
-                    <footer class="blockquote-footer">Tags : {{ $post->tags }}</footer><br>
+                    <p class="card-text">{!! $post->content !!}</p>
+                    <footer class="blockquote-footer">Tags : {!! $post->tags !!}</footer><br>
                     @if($current_user == $post->user_id || $user_type == 'admin')
                     <form method="post" action="{{ route('billets_delete', ['id' => $post->id])}}">  
                     @csrf
@@ -34,7 +34,6 @@
             </div>
         @endif
         </div>
-        <?php var_dump($user_type);?>
     </div>
 </div>
 @endsection

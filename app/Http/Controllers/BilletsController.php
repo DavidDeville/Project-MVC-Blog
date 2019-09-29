@@ -54,9 +54,10 @@ class BilletsController extends Controller
             'tags' => ['required'],
         ]);
         $data['user_id'] = Auth::user()->id;
-
+        $user = Auth::user();
+        // dd($user->type);
         Billets::create($data);
-        return view('billets/new', ['mess' => "le billet a bien été envoyé"]);
+        return view('billets/new', ['mess' => "le billet a bien été envoyé", 'user_type' => $user->type ]);
     }
 
     /**

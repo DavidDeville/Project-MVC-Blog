@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ asset('node_modules/tinymce/tinymce.js') }}"></script>
+<script>
+    tinymce.init({
+        selector:'textarea.content',
+        width: 330,
+        height: 400
+    });
+</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,7 +22,7 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Titre') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" autofocus>
 
                                 @error('title')
                                     <span class="invalid-feedback" role="alert">
@@ -28,7 +36,7 @@
                             <label for="content" class="col-md-4 col-form-label text-md-right">{{ __('Contenu') }}</label>
 
                             <div class="col-md-6">
-                                <input id="content" type="text" class="form-control @error('content') is-invalid @enderror" name="content" required autocomplete="content">
+                                <textarea id="content" type="text" class="form-control @error('content') is-invalid @enderror content" name="content"></textarea>
                             </div>
                         </div>
 
@@ -36,7 +44,7 @@
                             <label for="tags" class="col-md-4 col-form-label text-md-right">{{ __('Tags') }}</label>
 
                             <div class="col-md-6">
-                                <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags" required autocomplete="tags">
+                                <input id="tags" type="text" class="form-control @error('tags') is-invalid @enderror" name="tags">
 
                                 @error('tags')
                                     <span class="invalid-feedback" role="alert">
